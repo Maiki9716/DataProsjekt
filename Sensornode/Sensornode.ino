@@ -178,7 +178,7 @@ BLYNK_WRITE(V7) {
   relevantnumReadings = param.asInt();
   en_boolsk_verdi_for_utregning = 0;
   total = 0;
-  Serial.println(relevantnumReadings);
+  //Serial.println(relevantnumReadings);
 }
 
 
@@ -197,7 +197,7 @@ float gjennomsnittArray(float * array, int len){
     Blynk.virtualWrite(V6, average);
 
     //Serial.println(average);
-    Serial.println(relevantnumReadings);
+    //Serial.println(relevantnumReadings);
     return (float(total) / float(len));
 
   }
@@ -217,8 +217,13 @@ void myTimerEvent()
   Blynk.virtualWrite(V0, temp);
   Blynk.virtualWrite(V1, gass);
   Blynk.virtualWrite(V2, lux);
-
-
+  Serial.print(millis());
+  Serial.print(" Temperatur: ");
+  Serial.print(temp);
+    Serial.print(" Gass: ");
+  Serial.print(gass);  
+  Serial.print(" lux: ");
+  Serial.print(lux);
   if (selectedreading == 1) {
     Blynk.virtualWrite(V4, temp);
     String printstring = "The temperature is: " + String(temp) + "°C\n";
@@ -306,11 +311,12 @@ void myTimerEvent()
 void loop() {
   Blynk.run();
   timer.run();
-  
+  /*
   if(millis() > tid + 10000){
     // PRINT DEM FØRST
-    Serial.print("maxverdi" );
-  Serial.println(maxverdiTemp);
+   // Serial.print("maxverdiTemp: " );
+   // Serial.println(maxverdiTemp);
+
     // SÅ NULLSTILL DEM
      maxverdiTemp = 0;
      maxverdiLux = 0;
@@ -320,5 +326,5 @@ void loop() {
      minverdiLux = 0;
      minverdiGass = 0;
      tid = millis();
-    }
+    }*/
 }
