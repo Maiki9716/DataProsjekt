@@ -217,6 +217,7 @@ void myTimerEvent()
   Blynk.virtualWrite(V0, temp);
   Blynk.virtualWrite(V1, gass);
   Blynk.virtualWrite(V2, lux);
+  /*
   Serial.print(millis());
   Serial.print(" Temperatur: ");
   Serial.print(temp);
@@ -224,6 +225,7 @@ void myTimerEvent()
   Serial.print(gass);  
   Serial.print(" lux: ");
   Serial.print(lux);
+  */
   if (selectedreading == 1) {
     Blynk.virtualWrite(V4, temp);
     String printstring = "The temperature is: " + String(temp) + "°C\n";
@@ -285,7 +287,6 @@ void myTimerEvent()
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // ===============================================================================================================
 
-//void averageFilter(readIndex, ){
  }
 
 
