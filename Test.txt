@@ -1,1 +1,4 @@
 Xdd
+
+Når du skal laste opp kode så må du
+1. Stage file
