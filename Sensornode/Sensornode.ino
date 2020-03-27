@@ -193,8 +193,8 @@ float gjennomsnittArray(float * array, int len){
       total += float(array[i]);
     }
 
-    average = total / float(relevantnumReadings);
-    Blynk.virtualWrite(V6, average);
+    //average = total / float(relevantnumReadings);
+    //Blynk.virtualWrite(V6, average);
 
     //Serial.println(average);
     //Serial.println(relevantnumReadings);
@@ -231,7 +231,9 @@ void myTimerEvent()
     String printstring = "The temperature is: " + String(temp) + "°C\n";
     terminal.print(printstring);
         if (en_boolsk_verdi_for_utregning == 1) {
-    gjennomsnittArray(avlesningerTemp,relevantnumReadings);
+    
+        Blynk.virtualWrite(V6, gjennomsnittArray(avlesningerTemp,relevantnumReadings));
+
     }
 
 
@@ -239,11 +241,14 @@ void myTimerEvent()
 
 
   if (selectedreading == 2) {
-    Blynk.virtualWrite(V4, gass);
+   Blynk.virtualWrite(V4, gass);
     String printstring = "The analog gas reading is: " + String(gass) + "\n";
     terminal.print(printstring);
         if (en_boolsk_verdi_for_utregning == 1) {
-    gjennomsnittArray(avlesningerGass,relevantnumReadings);
+    //gjennomsnittArray(avlesningerGass,relevantnumReadings);
+
+            Blynk.virtualWrite(V6, gjennomsnittArray(avlesningerGass,relevantnumReadings));
+
     }
 
   }
@@ -253,7 +258,7 @@ void myTimerEvent()
     String printstring = "The lux measurement is: " + String(lux) + "\n";
     terminal.print(printstring);
         if (en_boolsk_verdi_for_utregning == 1) {
-    gjennomsnittArray(avlesningerLux,relevantnumReadings);
+          Blynk.virtualWrite(V6, gjennomsnittArray(avlesningerLux,relevantnumReadings));
     }
 
   }
@@ -312,11 +317,13 @@ void myTimerEvent()
 void loop() {
   Blynk.run();
   timer.run();
-  /*
-  if(millis() > tid + 10000){
+
+  if(millis() > tid + period){
     // PRINT DEM FØRST
    // Serial.print("maxverdiTemp: " );
    // Serial.println(maxverdiTemp);
+    Blynk.virtualWrite(V0, maxverdiTemp);
+    Blynk.virtualWrite(V0, minverdiTemp);
 
     // SÅ NULLSTILL DEM
      maxverdiTemp = 0;
@@ -327,5 +334,5 @@ void loop() {
      minverdiLux = 0;
      minverdiGass = 0;
      tid = millis();
-    }*/
+    }
 }
